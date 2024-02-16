@@ -1,21 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { View, Text, StyleSheet} from "react-native";
+import Header from "./components/Header";
+import Heading from "./components/Heading";
+import Contentu from "./components/Contentu";
+import Footeru from "./components/Footeru";
+import MenuItems from "./components/MenuItems";
+import SectionListu from "./components/SectionListu";
+import Input from "./components/Input";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+const Stack= createNativeStackNavigator()
+export default function App(){
+  return(
+      <View style={styles.view}>
+        <Header/>
+        <NavigationContainer  >
+        <Stack.Navigator initialRouteName="Input" screenOptions={{contentStyle:{backgroundColor:'#333333'}}} >
+          <Stack.Screen name='Input' component={Input}/>
+          <Stack.Screen name='content' component={Contentu}/>
+          <Stack.Screen name='MenuItems' component={MenuItems}/>
+        </Stack.Navigator>
+      </NavigationContainer>
+      </View>
+    
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+const styles= StyleSheet.create({
+  view:{flex:1, flexDirection:'column', backgroundColor:'#333333'}
 });
